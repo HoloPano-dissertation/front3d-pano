@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "front3d-pano"
+version = "1.0.0"
+description = "Panoramas with metric 3D scene annotation from 3D-FRONT rooms"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+  { name = "Evgeny Zemskov" }
+]
+dependencies = [
+  "numpy>=1.24",
+  "shapely>=2,<3",
+  "scipy>=1.10",
+  "h5py>=3.10",
+  "Pillow>=10",
+]
+
+[project.optional-dependencies]
+render = [
+  "blenderproc==2.8.0",
+]
+dev = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+front3d-pano = "front3d_pano.cli:main"
+
+[project.urls]
+Repository = "https://github.com/HoloPano-dissertation/front3d-pano"
+Documentation = "https://github.com/HoloPano-dissertation/front3d-pano/tree/main/docs"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+front3d_pano = ["render/*.sh"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
